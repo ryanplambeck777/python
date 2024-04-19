@@ -1,4 +1,5 @@
 class Television:
+   """A class representing a television"""
 
 
    MIN_VOLUME = 0
@@ -8,6 +9,7 @@ class Television:
 
 
    def __init__(self):
+       """Initialize the television with default values"""
        self.__status = False
        self.__muted = False
        self.__volume = self.MIN_VOLUME
@@ -16,11 +18,13 @@ class Television:
 
 
    def power(self):
+       """Toggle the power of the television"""
        self.__status = not self.__status
 
 
    def mute(self):
-      if self.__status:
+       """Toggle the mute of the television"""
+       if self.__status:
            if self.__muted:
                self.__volume = self.__previous_volume  # Restore previous volume
            else:
@@ -30,17 +34,20 @@ class Television:
 
 
    def channel_up(self):
-      if self.__status:
+       """Increase the channel by 1"""
+       if self.__status:
            self.__channel = (self.__channel + 1) % (self.MAX_CHANNEL + 1)
 
 
    def channel_down(self):
-      if self.__status:
+       """Decrease the channel by 1"""
+       if self.__status:
            self.__channel = (self.__channel - 1) % (self.MAX_CHANNEL + 1)
 
 
    def volume_up(self):
-      if self.__status:
+       """Increase the volume by 1"""
+       if self.__status:
            if self.__muted:
                self.mute()  # Unmute before adjusting volume
            if self.__volume < self.MAX_VOLUME:
@@ -48,13 +55,14 @@ class Television:
 
 
    def volume_down(self):
-      if self.__status:
+       """Decrease the volume by 1"""
+       if self.__status:
            if self.__muted:
                self.mute()  # Unmute before adjusting volume
            if self.__volume > self.MIN_VOLUME:
                self.__volume -= 1
 #
    def __str__(self):
-      power_status = "True" if self.__status else "False"
+       """Print the television object"""
+       power_status = "True" if self.__status else "False"
        return f"Power = {power_status}, Channel = {self.__channel}, Volume = {self.__volume}"
-
